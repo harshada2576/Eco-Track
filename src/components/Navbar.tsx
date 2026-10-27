@@ -49,8 +49,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>{STUDENT_INFO.name}</span>
             </span>
             <span className="text-forest-300">•</span>
-            <span className="text-slate-600 font-mono">
-              Roll: <strong>{STUDENT_INFO.rollNumber}</strong>
+            <span className="text-slate-600">
+              Roll: <strong className="font-semibold tracking-wide text-slate-800">{STUDENT_INFO.rollNumber}</strong>
             </span>
             <span className="text-forest-300">•</span>
             <span className="text-slate-600">
