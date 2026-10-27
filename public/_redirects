@@ -1,0 +1,3 @@
+# Netlify Single Page Application redirects
+/documents/*  /documents/:splat  200!
+/*            /index.html        200
