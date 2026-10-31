@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, X, LayoutGrid, List, Filter, RotateCcw } from 'lucide-react';
+import { Search, X, LayoutGrid, List, RotateCcw } from 'lucide-react';
 import { CATEGORIES_META } from '../data/assignments';
 
 interface FilterBarProps {
@@ -37,27 +37,28 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     { label: 'Excel (.xlsx)', value: 'XLSX' },
     { label: 'Word (.docx)', value: 'DOCX' },
     { label: 'Slides (.pptx)', value: 'PPTX' },
-    { label: 'Images', value: 'IMAGE' },
+    { label: 'Posters / Images', value: 'IMAGE' },
   ];
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm space-y-4 mb-6">
+    <div className="bg-[#FAF9F5] rounded-lg border border-[#DCDDD3] p-4 sm:p-5 space-y-4 mb-8">
       {/* Top Row: Search Input + View Mode Toggle + Reset */}
       <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
+        
         {/* Search Field */}
         <div className="relative w-full sm:flex-1">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#74786F] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search by title, filename, tag, or topic (e.g., Rajasthan, LEED, Dixon, E-Revive)..."
-            className="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-forest-600 focus:bg-white transition-all"
+            placeholder="Search by title, topic, or filename (e.g., Rajasthan, LEED, Dixon, E-Revive, WEEE)..."
+            className="w-full pl-10 pr-9 py-2 text-xs sm:text-sm bg-[#F3F0E7] border border-[#DCDDD3] rounded-md focus:outline-none focus:border-[#183D32] focus:bg-[#FAF9F5] text-[#292D29] placeholder-[#74786F] transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => onSearchChange('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#74786F] hover:text-[#183D32]"
             >
               <X className="w-4 h-4" />
             </button>
@@ -69,33 +70,33 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           {isFiltered && (
             <button
               onClick={onReset}
-              className="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition-colors"
+              className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-[#B76E4B] border border-[#B76E4B]/40 hover:bg-[#B76E4B]/10 rounded-md transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset Filters</span>
             </button>
           )}
 
-          <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
+          <div className="flex items-center bg-[#F3F0E7] p-1 rounded-md border border-[#DCDDD3]">
             <button
               onClick={() => onViewModeChange('grid')}
-              className={`p-1.5 rounded-lg text-xs font-medium transition-all ${
+              className={`p-1.5 rounded text-xs transition-all ${
                 viewMode === 'grid'
-                  ? 'bg-white text-forest-900 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-900'
+                  ? 'bg-[#183D32] text-[#FAF9F5]'
+                  : 'text-[#74786F] hover:text-[#183D32]'
               }`}
-              title="Grid Card View"
+              title="Grid View"
             >
               <LayoutGrid className="w-4 h-4" />
             </button>
             <button
               onClick={() => onViewModeChange('table')}
-              className={`p-1.5 rounded-lg text-xs font-medium transition-all ${
+              className={`p-1.5 rounded text-xs transition-all ${
                 viewMode === 'table'
-                  ? 'bg-white text-forest-900 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-900'
+                  ? 'bg-[#183D32] text-[#FAF9F5]'
+                  : 'text-[#74786F] hover:text-[#183D32]'
               }`}
-              title="Table List View"
+              title="Catalogue Table View"
             >
               <List className="w-4 h-4" />
             </button>
@@ -105,31 +106,31 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
       {/* Category Pills (Horizontal scrollable) */}
       <div>
-        <div className="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-thin">
+        <div className="flex items-center space-x-2 overflow-x-auto pb-1 scrollbar-thin">
           <button
             onClick={() => onCategoryChange('ALL')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+            className={`px-3 py-1.5 rounded-md text-xs whitespace-nowrap transition-all font-medium ${
               selectedCategory === 'ALL'
-                ? 'bg-forest-800 text-white shadow-sm'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                ? 'bg-[#183D32] text-[#FAF9F5]'
+                : 'bg-transparent border border-[#DCDDD3] text-[#292D29] hover:bg-[#E3E7DD]/50'
             }`}
           >
-            All Categories ({totalAssignments})
+            All Modules ({totalAssignments})
           </button>
 
           {CATEGORIES_META.map((cat) => (
             <button
               key={cat.name}
               onClick={() => onCategoryChange(cat.name)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center space-x-1.5 ${
+              className={`px-3 py-1.5 rounded-md text-xs whitespace-nowrap transition-all flex items-center space-x-1.5 ${
                 selectedCategory === cat.name
-                  ? 'bg-forest-800 text-white shadow-sm'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  ? 'bg-[#183D32] text-[#FAF9F5] font-medium'
+                  : 'bg-transparent border border-[#DCDDD3] text-[#292D29] hover:bg-[#E3E7DD]/50'
               }`}
             >
               <span>{cat.name}</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                selectedCategory === cat.name ? 'bg-forest-700 text-white' : 'bg-slate-200 text-slate-600'
+              <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+                selectedCategory === cat.name ? 'bg-[#315B45] text-[#FAF9F5]' : 'bg-[#E3E7DD] text-[#183D32]'
               }`}>
                 {cat.count}
               </span>
@@ -138,18 +139,18 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         </div>
       </div>
 
-      {/* Format Pills & Match Counter */}
-      <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+      {/* Format Pills & Count Indicator */}
+      <div className="pt-3 border-t border-[#DCDDD3] flex flex-wrap items-center justify-between gap-2 text-xs">
         <div className="flex items-center space-x-1.5 overflow-x-auto">
-          <span className="text-slate-400 font-semibold mr-1 uppercase text-[10px] tracking-wider">Format:</span>
+          <span className="font-mono text-[#74786F] text-[10px] uppercase tracking-wider mr-1">FORMAT:</span>
           {formats.map((fmt) => (
             <button
               key={fmt.value}
               onClick={() => onFormatChange(fmt.value)}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors ${
+              className={`px-2.5 py-1 rounded-md text-xs font-mono transition-colors ${
                 selectedFormat === fmt.value
-                  ? 'bg-emerald-700 text-white font-semibold'
-                  : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  ? 'bg-[#315B45] text-[#FAF9F5] font-medium'
+                  : 'bg-transparent border border-[#DCDDD3] text-[#74786F] hover:text-[#183D32] hover:bg-[#E3E7DD]/40'
               }`}
             >
               {fmt.label}
@@ -157,8 +158,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           ))}
         </div>
 
-        <div className="text-slate-500">
-          Showing <strong className="text-forest-900">{totalFiltered}</strong> of {totalAssignments} assignments
+        <div className="text-[#74786F] font-mono text-[11px]">
+          Showing <strong className="text-[#183D32] font-semibold">{totalFiltered}</strong> of {totalAssignments} assignments
         </div>
       </div>
     </div>

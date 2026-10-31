@@ -1,106 +1,105 @@
-# ECO-TRACK — EWEM Semester Assignment Portfolio Website
+# ECO-TRACK — EWEM Academic Research Portfolio
+## Environmental & Waste Management (EWEM) — Semester V (2026–2027)
 
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![License: Academic](https://img.shields.io/badge/License-Academic%20Evaluation-2e593f.svg)](#academic-credentials)
+[![Security: Hardened](https://img.shields.io/badge/Security-Hardened%20%26%20Sanitized-183D32.svg)](#security--hardening-guarantees)
+[![License: Academic](https://img.shields.io/badge/License-Academic%20Evaluation-315B45.svg)](#academic-credentials)
 
 > **Official Semester V Academic Portfolio** for **Environmental and Waste Management (EWEM)**.  
-> Developed as a self-contained, 100% static client-side web application designed for seamless faculty review and grading without requiring backend servers or database connections.
+> Designed and architected as a premium editorial sustainability research publication and self-contained static web portfolio. Faculty evaluators can browse, search, inspect in-browser, and download original course submissions without requiring external backend servers or database connections.
 
 ---
 
 ## Academic Credentials
 
-| Field | Detail |
+| Attribute | Details |
 |---|---|
 | **Student Name** | **Harshada Avhad** |
 | **Roll Number** | **`24102B0023`** |
-| **Class & Division** | **CMPN-B** |
+| **Class & Cohort** | **CMPN-B** |
 | **Semester** | **Semester V** |
-| **Course / Subject** | **Environmental and Waste Management (EWEM)** |
-| **Academic Year** | **2026–2027** |
-| **Project Title** | **ECO-TRACK — EWEM Semester Portfolio** |
+| **Subject** | **Environmental and Waste Management (EWEM)** |
+| **Academic Session** | **2026–2027** |
+| **Portfolio Title** | **ECO-TRACK — EWEM Academic Portfolio** |
+| **Live Deployment** | [eco-track-ten-inky.vercel.app](https://eco-track-ten-inky.vercel.app/) |
 
 ---
 
-## Key Features
+## Visual Design System & Editorial Identity
 
-1. **Self-Contained Static Architecture:**
-   - Zero external servers, Python/Flask backends, or SQL databases.
-   - Deploys instantly to **Netlify Drop** (drag-and-drop) or **Vercel**.
-   - Offline & permanent: documents are bundled directly into the static distribution bundle.
-2. **Interactive Multi-Format Document Viewers:**
-   - **PDFs:** Embedded in-browser sandbox with download and open controls.
-   - **Excel Workbooks (`.xlsx`):** In-browser SheetJS engine rendering interactive sheet tabs (e.g., all 9 worksheets in the Rajasthan Tracker, 4 worksheets in LEED benchmarks) and live cell filtering.
-   - **Word Documents (`.docx`):** Converted to clean, structured HTML via Mammoth.js.
-   - **PowerPoint (`.pptx`):** Slide count metrics, architecture summaries, and companion PDF visual links.
-   - **Images (`.jpg`, `.png`):** High-resolution responsive viewers for posters and carbon footprint audits.
-3. **Faculty & Evaluator Features:**
-   - **Full-text Search:** Filter by assignment title, filename, tags, or topic.
-   - **6 Curated Syllabus Modules:** Quick jump between course categories.
-   - **Format Filters:** Toggle between PDF, Excel, Word, Slides, and Images.
-   - **Dual Views:** Grid card view or compact tabular list view for quick grading.
-   - **Teacher Evaluation Guide Modal:** Comprehensive verification instructions built into the top navigation.
+ECO-TRACK is intentionally art-directed as a high-end environmental research publication, avoiding generic AI-generated templates and saturated neon effects in favor of natural pigments, warm paper surfaces, and deliberate typography:
 
----
+### 1. Color Palette
+- **Deep Forest (`#183D32`):** Primary headings, high-contrast actions, and brand marks.
+- **Moss Green (`#315B45`):** Secondary headers, active pill controls, and module indicators.
+- **Muted Sage (`#A6B49A`):** Accents, subtle metadata tags, and border highlights.
+- **Warm Paper (`#F3F0E7`):** Card panels, document reading headers, and table head rows.
+- **Soft Cream (`#FAF9F5`):** Main page canvas and clean card surfaces.
+- **Light Sage Surface (`#E3E7DD`):** Category tags, metadata chips, and quiet hover states.
+- **Terracotta / Clay (`#B76E4B`):** Selective editorial highlights and slide deck badges.
+- **Charcoal (`#292D29`):** High-readability body typography.
+- **Subtle Border (`#DCDDD3`):** Fine hairline separators and card outlines.
 
-## Directory Organization
+### 2. Typography System
+- **Display & Headings:** `Instrument Serif` (Google Fonts) — confident, academic, and editorial.
+- **Body & UI Controls:** `DM Sans` (Google Fonts) — crisp, modern, and readable across dense data tables and file descriptions.
+- **Code & File Paths:** `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas` — clean technical metadata representation.
 
-The project is structured with strict separation between original source materials, static assets, and source code:
-
-```
-Eco track/
-├── coursework_source/                # Clean archive of all 19 original coursework files
-│   ├── manifest.json                 # Complete metadata inventory
-│   ├── Class Task_Upload...pdf
-│   ├── Detailed_State_EWaste...PDF
-│   ├── E-Revive Presentation...pptx
-│   ├── LEED_India_10_Green...xlsx
-│   └── ... (all 19 files)
-│
-├── public/                           # Static assets copied directly to dist during build
-│   ├── _redirects                    # Netlify SPA routing rules (prevents 404s on refresh)
-│   └── documents/                    # Production-bundled copies of all 19 documents
-│
-├── src/                              # Application source code (React + TypeScript)
-│   ├── components/                   # Modular UI components
-│   │   ├── AssignmentCard.tsx        # Grid card with format badge & preview/download
-│   │   ├── AssignmentTable.tsx       # Compact table view for professor quick-grading
-│   │   ├── CategoryCards.tsx         # 6 portfolio focus modules
-│   │   ├── DocumentViewerModal.tsx   # Multi-engine viewer (PDF, XLSX, DOCX, PPTX, Img)
-│   │   ├── FeaturedAssignments.tsx   # Highlighted semester deliverables
-│   │   ├── FilterBar.tsx             # Search, category pills, format pills, view toggle
-│   │   ├── Footer.tsx                # Academic attribution & back to top
-│   │   ├── HeroSection.tsx           # Academic branding & student credential badge
-│   │   ├── Navbar.tsx                # Top navigation with Teacher Guide trigger
-│   │   └── TeacherGuideModal.tsx     # Evaluation instructions modal
-│   ├── data/
-│   │   ├── assignments.json          # Formatted JSON manifest of all 19 entries
-│   │   ├── assignments.ts            # Typed datasets and category metadata
-│   │   └── student.ts                # Student profile constants
-│   ├── types/
-│   │   └── index.ts                  # TypeScript interfaces
-│   ├── App.tsx                       # Main application shell & router state
-│   ├── index.css                     # Tailwind CSS & custom typography
-│   ├── main.tsx                      # React root entry point
-│   └── vite-env.d.ts                 # Type declarations
-│
-├── dist/                             # Output of `npm run build` (Ready for Netlify & Vercel)
-├── index.html                        # HTML5 document with SEO tags & typography
-├── package.json                      # Project dependencies & scripts
-├── tailwind.config.js                # Custom environmental color palette
-├── tsconfig.json                     # TypeScript compiler configuration
-├── vercel.json                       # Vercel deployment & rewrite configuration
-└── vite.config.ts                    # Vite build configuration with relative base
-```
+### 3. Restrained Radii & Layout
+- Controls and buttons: `4–6px`
+- Dossier and assignment cards: `8–10px`
+- Reading panels: `12–14px`
+- Asymmetric two-column hero featuring authentic campus awareness drive campaign artifacts (`IMG-20260907-WA0003.jpg`).
 
 ---
 
-## Complete Assignment Inventory (19 Verified Files)
+## Core Technical Capabilities
 
-| # | Assignment Title | Filename | Format | Size | Category |
+1. **100% Self-Contained Static Architecture:**
+   - Zero runtime database or external API dependencies.
+   - Deploys instantly to **Vercel** or **Netlify Drop**.
+   - All 19 course deliverables are bundled directly into `public/documents/`.
+2. **Interactive In-Browser Document Viewers:**
+   - **PDFs:** Full-height embedded sandbox with standalone tab view and direct download.
+   - **Excel Workbooks (`.xlsx`):** SheetJS-powered ledger interface with multi-worksheet tabs (e.g. 9 sheets in the Rajasthan State Tracker, 4 sheets in LEED benchmarks) and live cell searching.
+   - **Word Documents (`.docx`):** Mammoth-rendered publication typography with serverless sanitization.
+   - **PowerPoint (`.pptx`):** Slide deck architecture briefs with slide count metrics and companion PDF slide deck recommendations.
+   - **Posters & Images (`.jpg`, `.png`):** High-resolution responsive lightbox.
+3. **Faculty Evaluator Tooling:**
+   - **Catalogue Search:** Real-time query matching across titles, filenames, descriptions, and tags.
+   - **6 Curated Thematic Modules:** Grouped by Rajasthan e-waste, EU WEEE benchmarking, LEED green building, E-Revive circular economy platform, foundational coursework, and campus outreach.
+   - **Dual View Modes:** Grid dossier cards and publication-grade tabular catalogue.
+   - **Evaluator Guide Modal:** Step-by-step verification instructions available directly from the header.
+
+---
+
+## Security & Hardening Guarantees
+
+ECO-TRACK implements defense-in-depth principles appropriate for static academic portfolios:
+
+1. **Zero Secret Exposure:**
+   - No private keys, database passwords, API tokens, or personal identifiers are stored in code or repository history.
+   - `.gitignore` rigorously protects local environment files (`.env*`), temporary builds (`dist/`), and caches.
+2. **XSS Protection & HTML Sanitization:**
+   - In-browser Word (`.docx`) previews via Mammoth are passed through a custom sanitization pipeline in [`DocumentViewerModal.tsx`](src/components/DocumentViewerModal.tsx) that strips executable script blocks, inline `on*` event handlers, and `javascript:` URI schemes.
+3. **Reverse-Tabnabbing Defense:**
+   - Every external link opening in a new window enforces `rel="noopener noreferrer"` to prevent window hijacking.
+4. **HTTP Security Headers (`vercel.json`):**
+   - `X-Content-Type-Options: nosniff` — prevents MIME-type sniffing.
+   - `X-Frame-Options: SAMEORIGIN` — restricts unauthorized framing while permitting internal modal embeds.
+   - `Referrer-Policy: strict-origin-when-cross-origin` — protects referrer privacy.
+   - `Permissions-Policy: camera=(), microphone=(), geolocation=()` — disables unnecessary browser hardware access.
+5. **No Untrusted File Uploads:**
+   - The application does not accept user-uploaded files at runtime; all parsed documents are verified static course assets bundled at build time.
+
+---
+
+## Verified Deliverables Manifest (19 Files)
+
+| # | Deliverable Title | Filename | Type | Size | Thematic Module |
 |---|---|---|:---:|:---:|---|
 | 1 | State E-Waste Management Comprehensive Report — Rajasthan | `Detailed_State_EWaste_Management_Report_Rajasthan.PDF` | PDF | 264.6 KB | Rajasthan E-Waste Study |
 | 2 | State E-Waste Data Tracker — Rajasthan Multi-Sheet Model | `State_EWaste_Tracker(Rajasthan).xlsx` | XLSX | 42.3 KB | Rajasthan E-Waste Study |
@@ -124,89 +123,54 @@ Eco track/
 
 ---
 
-## Local Development & Build Instructions
+## Local Development & Build Commands
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (version 18 or higher recommended)
-- Windows PowerShell or any terminal
+- Node.js (version 18 or higher)
+- PowerShell or bash terminal
 
 ### 1. Install Dependencies
-```powershell
+```bash
 npm install
 ```
 
-### 2. Run Local Development Server
-```powershell
+### 2. Start Development Server
+```bash
 npm run dev
 ```
-Open `http://localhost:5173/` in your browser.
+Navigate to `http://localhost:5173/` in your web browser.
 
-### 3. Build Production Bundle
-```powershell
+### 3. Production Build & Typecheck
+```bash
 npm run build
 ```
-This runs TypeScript checks (`tsc`) and compiles the application into the `dist/` directory.
+Executes TypeScript compilation (`tsc`) followed by Vite production bundling into `dist/`.
 
-### 4. Preview the Production Build Locally
-```powershell
+### 4. Local Production Preview
+```bash
 npm run preview
 ```
-Open `http://localhost:4173/` to test the exact production bundle.
+Serves the generated `dist/` directory at `http://localhost:4173/`.
 
 ---
 
-## Deployment Guide
+## Deployment Workflows
 
-### Option 1: Netlify Drop (Drag-and-Drop) — Recommended
-1. Run `npm run build` to ensure the `dist/` folder is fresh.
-2. Open your web browser and navigate to **[app.netlify.com/drop](https://app.netlify.com/drop)**.
-3. Sign in or sign up (free).
-4. Drag and drop the **entire `dist` folder** into the Netlify upload zone.
-5. Netlify will deploy the site and provide a permanent public URL (e.g., `https://eco-track-harshada.netlify.app`).
-6. Share this link with your course teacher.
+### Vercel Deployment
+1. Connect the GitHub repository to [Vercel](https://vercel.com/).
+2. Framework preset: `Vite`.
+3. Build command: `npm run build`.
+4. Output directory: `dist`.
+5. [`vercel.json`](vercel.json) configures SPA rewrites and production HTTP security headers.
 
-### Option 2: Vercel (GitHub Integration or CLI)
-1. Push your repository to GitHub.
-2. Go to **[vercel.com](https://vercel.com/)** and click **Add New Project**.
-3. Import your GitHub repository.
-4. Keep standard Vite settings:
-   - **Framework Preset:** `Vite`
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
-5. Click **Deploy**. The included [`vercel.json`](vercel.json) automatically handles client-side routing.
+### Netlify Drop
+1. Run `npm run build`.
+2. Drag and drop the `dist/` folder onto [app.netlify.com/drop](https://app.netlify.com/drop).
+3. [`public/_redirects`](public/_redirects) preserves client-side routing on hard refreshes.
 
 ---
 
-## Instructions for Adding Future Assignments
-
-1. Save the new assignment file into `public/documents/`.
-2. Also place an archival copy in `coursework_source/`.
-3. Open [`src/data/assignments.ts`](src/data/assignments.ts) and append an entry:
-   ```typescript
-   {
-     id: "unique_id_here",
-     filename: "Exact_Filename.pdf",
-     title: "Display Title for Assignment",
-     category: "Coursework & Foundational",
-     description: "Brief factual summary...",
-     author: "Harshada Avhad",
-     academicStage: "Mid-Term Submission",
-     tags: ["Tag1", "Tag2"],
-     sizeBytes: 1048576,
-     sizeFormatted: "1.00 MB",
-     extension: "PDF",
-     mimeType: "application/pdf",
-     url: "/documents/Exact_Filename.pdf",
-     downloadFilename: "Exact_Filename.pdf",
-     featured: false
-   }
-   ```
-4. Run `npm run build`. The new document will immediately appear in the portfolio and viewer.
-
----
-
-## Evaluation & Academic Integrity
-
-- **Original Document Integrity:** None of the 19 original files have been modified or altered.
-- **Offline / Static Verification:** Every asset is served locally from `/documents/...`.
-- **Teacher Guide:** Accessible directly via the "Teacher Guide" button in the website header.
+## Academic Integrity
+- **Original Source Integrity:** All 19 documents are unmodified original coursework files.
+- **Static Delivery:** Hosted locally as static assets for permanent evaluator access.
+- **Author Attribution:** Harshada Avhad (Roll 24102B0023, CMPN-B).

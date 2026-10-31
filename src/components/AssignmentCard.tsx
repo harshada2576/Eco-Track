@@ -6,9 +6,8 @@ import {
   Image as ImageIcon, 
   Download, 
   Eye, 
-  ExternalLink, 
-  Tag, 
-  Folder 
+  ArrowUpRight,
+  ExternalLink
 } from 'lucide-react';
 import { Assignment } from '../types';
 import { resolveDocUrl } from '../data/assignments';
@@ -16,49 +15,47 @@ import { resolveDocUrl } from '../data/assignments';
 interface AssignmentCardProps {
   assignment: Assignment;
   onView: (assignment: Assignment) => void;
+  index?: number;
 }
 
-export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, onView }) => {
+export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, onView, index }) => {
   const docUrl = resolveDocUrl(assignment.url);
+  const sequenceStr = index !== undefined ? String(index + 1).padStart(2, '0') : null;
 
   const getFormatBadge = (ext: string) => {
     switch (ext) {
       case 'PDF':
-        return <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200">PDF</span>;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#183D32] text-[#FAF9F5]">PDF</span>;
       case 'XLSX':
-        return <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">EXCEL</span>;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#315B45] text-[#FAF9F5]">XLSX</span>;
       case 'PPTX':
-        return <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">PPTX</span>;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#B76E4B] text-[#FAF9F5]">PPTX</span>;
       case 'DOCX':
-        return <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200">WORD</span>;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#74786F] text-[#FAF9F5]">DOCX</span>;
       default:
-        return <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 border border-purple-200">{ext}</span>;
-    }
-  };
-
-  const getFormatIcon = (ext: string) => {
-    switch (ext) {
-      case 'PDF': return <FileText className="w-4 h-4 text-rose-600" />;
-      case 'XLSX': return <Table className="w-4 h-4 text-emerald-600" />;
-      case 'PPTX': return <Presentation className="w-4 h-4 text-amber-600" />;
-      case 'DOCX': return <FileText className="w-4 h-4 text-blue-600" />;
-      default: return <ImageIcon className="w-4 h-4 text-purple-600" />;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#A6B49A] text-[#183D32]">{ext}</span>;
     }
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 hover:border-forest-300 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between overflow-hidden group">
+    <div className="bg-[#FAF9F5] rounded-lg border border-[#DCDDD3] hover:border-[#183D32] transition-all duration-200 flex flex-col justify-between overflow-hidden group">
       <div className="p-5">
-        {/* Top Badges */}
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="flex items-center space-x-1.5">
+        
+        {/* Header Metadata */}
+        <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#DCDDD3] gap-2">
+          <div className="flex items-center space-x-2">
+            {sequenceStr && (
+              <span className="font-mono text-xs text-[#74786F]">
+                {sequenceStr}
+              </span>
+            )}
             {getFormatBadge(assignment.extension)}
-            <span className="text-[11px] font-medium text-slate-500">
+            <span className="text-[11px] font-mono text-[#74786F]">
               {assignment.sizeFormatted}
             </span>
           </div>
 
-          <span className="text-[11px] font-medium text-forest-800 bg-forest-50/80 px-2.5 py-0.5 rounded-full border border-forest-100 truncate max-w-[170px]">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-[#315B45] bg-[#E3E7DD] px-2 py-0.5 rounded truncate max-w-[170px]">
             {assignment.category}
           </span>
         </div>
@@ -66,27 +63,27 @@ export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, onVi
         {/* Title */}
         <h3 
           onClick={() => onView(assignment)}
-          className="text-base font-bold text-slate-900 group-hover:text-forest-800 transition-colors leading-snug cursor-pointer line-clamp-2"
+          className="font-serif text-lg text-[#183D32] group-hover:text-[#315B45] transition-colors leading-snug cursor-pointer line-clamp-2"
         >
           {assignment.title}
         </h3>
 
-        {/* Filename */}
-        <div className="mt-1.5 flex items-center space-x-1 text-slate-400 font-mono text-[11px] truncate">
-          <span className="truncate">{assignment.filename}</span>
-        </div>
+        {/* Source Filename */}
+        <p className="mt-1 font-mono text-[11px] text-[#74786F] truncate">
+          {assignment.filename}
+        </p>
 
         {/* Description */}
-        <p className="mt-3 text-xs text-slate-600 line-clamp-3 leading-relaxed">
+        <p className="mt-2.5 text-xs text-[#292D29]/75 line-clamp-3 leading-relaxed">
           {assignment.description}
         </p>
 
         {/* Tags */}
-        <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-1">
+        <div className="mt-4 pt-3 border-t border-[#DCDDD3] flex flex-wrap gap-1">
           {assignment.tags.map((tag) => (
             <span 
               key={tag}
-              className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium"
+              className="text-[10px] font-mono bg-[#E3E7DD]/60 text-[#183D32] px-2 py-0.5 rounded"
             >
               #{tag}
             </span>
@@ -95,33 +92,35 @@ export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, onVi
       </div>
 
       {/* Action Footer */}
-      <div className="bg-slate-50/80 px-5 py-3 border-t border-slate-100 flex items-center space-x-2">
+      <div className="bg-[#F3F0E7]/60 px-5 py-3 border-t border-[#DCDDD3] flex items-center justify-between gap-2">
         <button
           onClick={() => onView(assignment)}
-          className="flex-1 px-3 py-2 bg-forest-800 hover:bg-forest-700 text-white rounded-lg text-xs font-semibold inline-flex items-center justify-center space-x-1.5 transition-colors shadow-sm"
+          className="px-3 py-1.5 bg-[#183D32] hover:bg-[#315B45] text-[#FAF9F5] rounded-md text-xs font-medium tracking-wide inline-flex items-center space-x-1.5 transition-colors"
         >
           <Eye className="w-3.5 h-3.5" />
-          <span>View Document</span>
+          <span>View document ↗</span>
         </button>
 
-        <a
-          href={docUrl}
-          download={assignment.downloadFilename}
-          className="p-2 text-slate-600 hover:text-forest-900 hover:bg-white border border-slate-200 rounded-lg text-xs transition-colors inline-flex items-center justify-center"
-          title="Download original untouched file"
-        >
-          <Download className="w-4 h-4" />
-        </a>
+        <div className="flex items-center space-x-1.5">
+          <a
+            href={docUrl}
+            download={assignment.downloadFilename}
+            className="p-1.5 text-[#74786F] hover:text-[#183D32] hover:bg-[#FAF9F5] border border-[#DCDDD3] rounded-md transition-colors"
+            title="Download original file"
+          >
+            <Download className="w-3.5 h-3.5" />
+          </a>
 
-        <a
-          href={docUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 text-slate-600 hover:text-forest-900 hover:bg-white border border-slate-200 rounded-lg text-xs transition-colors inline-flex items-center justify-center"
-          title="Open file directly in new browser tab"
-        >
-          <ExternalLink className="w-4 h-4" />
-        </a>
+          <a
+            href={docUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-1.5 text-[#74786F] hover:text-[#183D32] hover:bg-[#FAF9F5] border border-[#DCDDD3] rounded-md transition-colors"
+            title="Open in standalone tab"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
     </div>
   );

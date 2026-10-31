@@ -1,15 +1,7 @@
 import React from 'react';
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  GraduationCap, 
-  BookOpen, 
-  Layers, 
-  ShieldCheck, 
-  DownloadCloud, 
-  Sparkles 
-} from 'lucide-react';
+import { ArrowUpRight, FileText, ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
 import { STUDENT_INFO } from '../data/student';
+import { resolveDocUrl } from '../data/assignments';
 
 interface HeroSectionProps {
   onBrowseAll: () => void;
@@ -25,154 +17,150 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   totalSizeBytes
 }) => {
   const formattedMb = (totalSizeBytes / (1024 * 1024)).toFixed(1);
+  const posterUrl = resolveDocUrl('/documents/IMG-20260907-WA0003.jpg');
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-12 sm:pt-12 sm:pb-16 bg-gradient-to-b from-forest-50 via-offwhite-50 to-white border-b border-forest-100/60">
-      {/* Decorative ambient elements */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-0 left-10 w-80 h-80 bg-forest-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
-
+    <section className="relative pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-[#DCDDD3] bg-[#FAF9F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Column: Heading, Academic Intro & CTAs */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-forest-100/80 border border-forest-200 text-forest-900 text-xs font-semibold tracking-wide shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-forest-700" />
-              <span>Official Academic Submission • Semester V (2026–2027)</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Editorial Content */}
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-8">
+            
+            {/* Metadata Label */}
+            <div className="flex items-center space-x-3 text-xs tracking-widest text-[#74786F] uppercase font-mono">
+              <span className="w-2 h-2 rounded-full bg-[#315B45]" />
+              <span>SEMESTER V / EWEM / 2026–27</span>
             </div>
 
-            <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-forest-950 tracking-tight leading-tight">
-                ECO-TRACK
-                <span className="block text-xl sm:text-2xl md:text-3xl font-medium text-forest-700 mt-1 font-serif">
-                  EWEM Semester Assignment Portfolio
-                </span>
+            {/* Main Editorial Heading */}
+            <div className="space-y-4">
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#183D32] leading-[1.08] tracking-tight font-normal">
+                Rethinking the way we manage waste.
               </h1>
-              <p className="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
-                A verified repository of coursework, field studies, state-level e-waste audits, and sustainability engineering models completed for <strong>Environmental & Waste Management (EWEM)</strong>.
+              
+              <p className="text-base sm:text-lg text-[#292D29]/80 font-normal leading-relaxed max-w-2xl pt-2">
+                An academic portfolio presenting semester research, empirical investigations, state-level electronic waste audits, LEED green building benchmarks, and circular economy product architectures for <strong>Environmental and Waste Management (EWEM)</strong>.
               </p>
             </div>
 
-            {/* Student Verified Metadata Badge */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-forest-100 shadow-sm shadow-forest-900/5 space-y-3">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>Student Credentials</span>
-                </span>
-                <span className="inline-flex items-center space-x-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                  <span>Verified Submissions</span>
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                <div>
-                  <span className="text-slate-400 block text-[11px]">Student Name</span>
-                  <span className="font-bold text-slate-800 text-sm">{STUDENT_INFO.name}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[11px]">Roll Number</span>
-                  <span className="font-bold text-slate-800 font-mono text-sm">{STUDENT_INFO.rollNumber}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[11px]">Class & Division</span>
-                  <span className="font-bold text-slate-800 text-sm">{STUDENT_INFO.className}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[11px]">Semester & Year</span>
-                  <span className="font-bold text-slate-800 text-sm">{STUDENT_INFO.semester}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Actions */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={onBrowseAll}
-                className="px-6 py-3.5 bg-forest-800 hover:bg-forest-700 text-white font-semibold rounded-xl shadow-md shadow-forest-900/10 hover:shadow-lg transition-all inline-flex items-center space-x-2 text-sm group"
+                className="px-6 py-3.5 bg-[#183D32] hover:bg-[#315B45] text-[#FAF9F5] rounded-md text-sm font-medium tracking-wide transition-all inline-flex items-center space-x-2 group shadow-sm"
               >
-                <span>Browse All {totalAssignments} Assignments</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>Explore my work</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
 
               <button
                 onClick={() => onExploreCategory('Rajasthan E-Waste Study')}
-                className="px-5 py-3.5 bg-white hover:bg-forest-50 text-forest-900 border border-forest-200 font-semibold rounded-xl transition-all text-sm shadow-sm"
+                className="px-5 py-3.5 bg-transparent hover:bg-[#E3E7DD]/60 text-[#183D32] border border-[#DCDDD3] hover:border-[#183D32] rounded-md text-sm font-medium tracking-wide transition-all inline-flex items-center space-x-2"
               >
-                View State Case Studies
+                <span>Rajasthan Case Study</span>
+                <ArrowRight className="w-4 h-4 text-[#74786F]" />
               </button>
             </div>
-          </div>
 
-          {/* Right Column: Visual Summary Metric Card */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-2xl bg-gradient-to-br from-forest-900 via-forest-800 to-forest-950 text-white p-6 sm:p-7 shadow-xl border border-forest-700/60 overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                <BookOpen className="w-40 h-40 text-emerald-400" />
-              </div>
-
-              <div className="relative space-y-6">
+            {/* Student Credentials Strip */}
+            <div className="pt-6 border-t border-[#DCDDD3]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                    Coursework Summary
-                  </span>
-                  <h3 className="text-xl font-bold text-white mt-1">
-                    Semester V Deliverables
-                  </h3>
-                  <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                    All original documents bundled into static assets for uninterrupted teacher evaluation and download.
-                  </p>
+                  <span className="text-[#74786F] block text-[11px] uppercase tracking-wider font-mono">Researcher</span>
+                  <span className="font-medium text-[#292D29] text-sm block mt-0.5">{STUDENT_INFO.name}</span>
                 </div>
-
-                <div className="grid grid-cols-2 gap-4 pt-2">
-                  <div className="bg-white/10 rounded-xl p-3.5 border border-white/10 backdrop-blur-sm">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-white block">
-                      {totalAssignments}
-                    </span>
-                    <span className="text-xs text-emerald-300 font-medium">
-                      Real Coursework Files
-                    </span>
-                  </div>
-
-                  <div className="bg-white/10 rounded-xl p-3.5 border border-white/10 backdrop-blur-sm">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-white block">
-                      6
-                    </span>
-                    <span className="text-xs text-emerald-300 font-medium">
-                      Curated Categories
-                    </span>
-                  </div>
-
-                  <div className="bg-white/10 rounded-xl p-3.5 border border-white/10 backdrop-blur-sm">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-white block">
-                      {formattedMb} MB
-                    </span>
-                    <span className="text-xs text-emerald-300 font-medium">
-                      Total Document Volume
-                    </span>
-                  </div>
-
-                  <div className="bg-white/10 rounded-xl p-3.5 border border-white/10 backdrop-blur-sm">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-emerald-400 block">
-                      100%
-                    </span>
-                    <span className="text-xs text-emerald-300 font-medium">
-                      Offline / Static Ready
-                    </span>
-                  </div>
+                <div>
+                  <span className="text-[#74786F] block text-[11px] uppercase tracking-wider font-mono">Roll Number</span>
+                  <span className="font-mono font-medium text-[#292D29] text-sm block mt-0.5">{STUDENT_INFO.rollNumber}</span>
                 </div>
-
-                <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
-                  <span className="flex items-center space-x-1.5">
-                    <DownloadCloud className="w-4 h-4 text-emerald-400" />
-                    <span>PDFs, XLSX, DOCX, PPTX, Images</span>
+                <div>
+                  <span className="text-[#74786F] block text-[11px] uppercase tracking-wider font-mono">Class & Cohort</span>
+                  <span className="font-medium text-[#292D29] text-sm block mt-0.5">{STUDENT_INFO.className}</span>
+                </div>
+                <div>
+                  <span className="text-[#74786F] block text-[11px] uppercase tracking-wider font-mono">Evaluation</span>
+                  <span className="font-medium text-[#315B45] text-sm block mt-0.5 flex items-center space-x-1">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>Verified</span>
                   </span>
-                  <span className="text-emerald-400 font-semibold">Ready to Grade</span>
                 </div>
               </div>
             </div>
+
           </div>
+
+          {/* Right Column: Editorial Photograph Frame & Academic Folio */}
+          <div className="lg:col-span-5">
+            <div className="bg-[#F3F0E7] border border-[#DCDDD3] rounded-lg p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+              
+              {/* Top Folio Header */}
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#DCDDD3] text-xs">
+                <span className="font-mono text-[#74786F] tracking-wider uppercase text-[11px]">
+                  ARCHIVE REF: EWEM-V-2026
+                </span>
+                <span className="px-2 py-0.5 rounded bg-[#E3E7DD] text-[#183D32] font-mono text-[10px] uppercase font-semibold">
+                  Coursework Folio
+                </span>
+              </div>
+
+              {/* Genuine Visual Material (Campus Awareness Campaign / E-Waste Artifact) */}
+              <div className="relative group overflow-hidden rounded-md border border-[#DCDDD3] bg-white">
+                <img
+                  src={posterUrl}
+                  alt="Environmental and Waste Management Campus Artifact"
+                  className="w-full h-72 sm:h-80 object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#183D32]/80 via-transparent to-transparent opacity-80" />
+                
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <p className="text-[11px] font-mono uppercase tracking-widest text-[#A6B49A]">
+                    Campus Outreach Poster • Seminar Hall Block A
+                  </p>
+                  <p className="font-serif text-base sm:text-lg italic leading-tight text-[#FAF9F5] mt-0.5">
+                    "Old Devices Still Have A Story! Let us give them a better ending!"
+                  </p>
+                </div>
+              </div>
+
+              {/* Editorial Caption */}
+              <div className="mt-3 text-center sm:text-left">
+                <p className="text-xs text-[#74786F] italic">
+                  Environmental & Waste Management — Academic Portfolio
+                </p>
+              </div>
+
+              {/* Research Volume Stats in restrained editorial row */}
+              <div className="grid grid-cols-3 gap-2 pt-4 mt-4 border-t border-[#DCDDD3] text-center">
+                <div className="p-2">
+                  <span className="font-serif text-2xl text-[#183D32] block leading-none">
+                    {totalAssignments}
+                  </span>
+                  <span className="text-[11px] text-[#74786F] font-mono uppercase mt-1 block">
+                    Deliverables
+                  </span>
+                </div>
+                <div className="p-2 border-x border-[#DCDDD3]">
+                  <span className="font-serif text-2xl text-[#183D32] block leading-none">
+                    6
+                  </span>
+                  <span className="text-[11px] text-[#74786F] font-mono uppercase mt-1 block">
+                    Key Domains
+                  </span>
+                </div>
+                <div className="p-2">
+                  <span className="font-serif text-2xl text-[#183D32] block leading-none">
+                    {formattedMb} MB
+                  </span>
+                  <span className="text-[11px] text-[#74786F] font-mono uppercase mt-1 block">
+                    Source Volume
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

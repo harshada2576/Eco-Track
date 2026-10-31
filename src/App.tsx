@@ -13,14 +13,10 @@ import { RAW_ASSIGNMENTS } from './data/assignments';
 import { Assignment } from './types';
 import { STUDENT_INFO } from './data/student';
 import { 
-  BookOpen, 
-  CheckCircle2, 
   FolderSearch, 
-  FileCheck, 
-  Layers, 
-  ArrowRight,
+  ArrowUpRight,
   ShieldCheck,
-  Search
+  BookOpen
 } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -95,7 +91,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-offwhite-50 text-slate-800">
+    <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-[#292D29]">
       {/* Top Navigation */}
       <Navbar
         currentTab={currentTab}
@@ -129,33 +125,39 @@ export const App: React.FC = () => {
               onBrowseAll={handleBrowseAll}
             />
 
-            {/* Academic Syllabus & Verification Callout */}
-            <section className="py-12 bg-white border-b border-forest-100">
+            {/* Academic Rigour & Curriculum Statement */}
+            <section className="py-16 sm:py-20 bg-[#FAF9F5] border-b border-[#DCDDD3]">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-gradient-to-br from-forest-900 to-forest-950 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
-                  <div className="max-w-2xl space-y-4">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                      Syllabus Alignment & Course Evaluation
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                      Rigorous Environmental & Waste Management Studies
+                <div className="bg-[#183D32] rounded-lg p-8 sm:p-12 text-[#FAF9F5] border border-[#315B45]">
+                  <div className="max-w-3xl space-y-4">
+                    <div className="flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#A6B49A]">
+                      <ShieldCheck className="w-4 h-4 text-[#A6B49A]" />
+                      <span>SYLLABUS ALIGNMENT & ASSESSMENT INTEGRITY</span>
+                    </div>
+
+                    <h2 className="font-serif text-3xl sm:text-4xl text-[#FAF9F5] leading-tight font-normal">
+                      Rigorous Environmental & Waste Management Research
                     </h2>
-                    <p className="text-sm text-slate-300 leading-relaxed">
-                      Every submission reflects systematic research into national and state-level e-waste compliance, circular economy design, empirical carbon footprint calculations, and LEED green building benchmarks.
+
+                    <p className="text-sm sm:text-base text-[#E3E7DD]/80 leading-relaxed font-normal">
+                      Every submission reflects systematic empirical research into national and state-level electronic waste compliance, circular economy design, carbon footprint audits, and LEED green building benchmarks. All documents are hosted locally as unmodified static files for direct grading.
                     </p>
-                    <div className="pt-2 flex flex-wrap gap-4">
+
+                    <div className="pt-4 flex flex-wrap gap-4">
                       <button
                         onClick={handleBrowseAll}
-                        className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-forest-950 font-bold rounded-xl text-xs sm:text-sm shadow-md transition-colors inline-flex items-center space-x-2"
+                        className="px-6 py-3 bg-[#FAF9F5] hover:bg-[#E3E7DD] text-[#183D32] font-medium rounded-md text-xs sm:text-sm tracking-wide transition-colors inline-flex items-center space-x-2 shadow-sm"
                       >
-                        <span>Inspect All 19 Assignments</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <span>Inspect Complete Archive ({RAW_ASSIGNMENTS.length} Deliverables)</span>
+                        <ArrowUpRight className="w-4 h-4 text-[#183D32]" />
                       </button>
+
                       <button
                         onClick={() => setShowTeacherGuide(true)}
-                        className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-xs sm:text-sm border border-white/20 transition-colors"
+                        className="px-5 py-3 bg-transparent hover:bg-[#315B45]/50 text-[#FAF9F5] font-medium rounded-md text-xs sm:text-sm tracking-wide border border-[#A6B49A]/40 transition-colors inline-flex items-center space-x-2"
                       >
-                        Read Evaluator Guide
+                        <BookOpen className="w-4 h-4 text-[#A6B49A]" />
+                        <span>Read Evaluator Guide</span>
                       </button>
                     </div>
                   </div>
@@ -164,21 +166,24 @@ export const App: React.FC = () => {
             </section>
           </div>
         ) : (
-          /* All Assignments View */
-          <div className="py-8 sm:py-12">
+          /* All Assignments Archive View */
+          <div className="py-10 sm:py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
               {/* Header */}
-              <div className="mb-6">
-                <div className="flex items-center space-x-2 text-xs text-forest-700 font-semibold mb-1">
-                  <span>EWEM Portfolio</span>
+              <div className="mb-8 pb-6 border-b border-[#DCDDD3]">
+                <div className="flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#74786F] mb-2">
+                  <span>EWEM PORTFOLIO</span>
                   <span>•</span>
-                  <span>Semester V Coursework</span>
+                  <span>SEMESTER V ARCHIVE</span>
                 </div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-forest-950 tracking-tight">
+                
+                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#183D32] leading-tight font-normal">
                   All Coursework & Deliverables
                 </h1>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
-                  Browse, search, inspect in-browser, and download original assignment documents. Every file is self-contained and ready for grading.
+                
+                <p className="text-xs sm:text-sm text-[#292D29]/75 mt-2 max-w-2xl leading-relaxed">
+                  Browse, search, inspect in-browser, and download original assignment documents. Every file is self-contained and ready for faculty review.
                 </p>
               </div>
 
@@ -200,30 +205,31 @@ export const App: React.FC = () => {
 
               {/* Assignments Listing */}
               {filteredAssignments.length === 0 ? (
-                <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center space-y-4">
-                  <FolderSearch className="w-12 h-12 text-slate-400 mx-auto" />
+                <div className="bg-[#FAF9F5] rounded-lg border border-[#DCDDD3] p-12 text-center space-y-4">
+                  <FolderSearch className="w-10 h-10 text-[#74786F] mx-auto" />
                   <div className="space-y-1">
-                    <h3 className="text-base font-bold text-slate-800">
-                      No assignments found matching your filter
+                    <h3 className="font-serif text-xl text-[#183D32]">
+                      No assignments found matching your criteria
                     </h3>
-                    <p className="text-xs text-slate-500 max-w-md mx-auto">
-                      Try clearing your search query or selecting a different category or file format.
+                    <p className="text-xs text-[#74786F] max-w-md mx-auto">
+                      Try clearing your search query or choosing a different category or file format.
                     </p>
                   </div>
                   <button
                     onClick={handleResetFilters}
-                    className="px-4 py-2 bg-forest-800 hover:bg-forest-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-colors"
+                    className="px-4 py-2 bg-[#183D32] hover:bg-[#315B45] text-[#FAF9F5] rounded-md text-xs font-medium tracking-wide transition-colors"
                   >
                     Reset All Filters
                   </button>
                 </div>
               ) : viewMode === 'grid' ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredAssignments.map((assignment) => (
+                  {filteredAssignments.map((assignment, index) => (
                     <AssignmentCard
                       key={assignment.id}
                       assignment={assignment}
                       onView={(doc) => setActiveDocument(doc)}
+                      index={index}
                     />
                   ))}
                 </div>
